@@ -1,6 +1,7 @@
+#!/usr/bin/perl
 #########################
 use strict;
-use Test::More;
+use Test::More skip_all => "";
 BEGIN { use_ok('BGPmon::CPM::PList') };
 BEGIN { use_ok('BGPmon::CPM::PList::Manager') };
 

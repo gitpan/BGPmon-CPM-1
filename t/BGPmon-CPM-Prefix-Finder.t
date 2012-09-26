@@ -1,4 +1,6 @@
-use Test::More;
+#!/usr/bin/perl
+
+use Test::More skip_all => "";
 use Data::Dumper;
 BEGIN { use_ok('BGPmon::CPM::Prefix::Finder') };
 
