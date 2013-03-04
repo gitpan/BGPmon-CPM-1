@@ -7,6 +7,9 @@ use base qw(BGPmon::CPM::DBObject);
 use BGPmon::CPM::PrefixAuthoritativeForDomain;
 use BGPmon::CPM::DomainResolvesToPrefix;
 use BGPmon::CPM::PrefixToSearchPath;
+
+our $VERSION = '1.02';
+
  
 __PACKAGE__->meta->setup
 (
@@ -57,6 +60,7 @@ sub edit{
   }
   foreach my $sp (@{$data->{'search_paths'}}){
     $self->add_search_paths({path=>$sp->{'path'}});
+                             #param_prefix=>$sp->{'param_prefix'}});
   }
   $self->save;
 }

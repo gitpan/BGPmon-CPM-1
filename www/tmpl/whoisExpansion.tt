@@ -17,7 +17,8 @@ Clicking "Back" will return you to the critical prefix list without making any c
     <p>[% prefix.msg %]</p>
   [% ELSE %]
     [% FOREACH range IN prefix.range %]
-    <input type="checkbox" name="prefix" value="[% range %]" checked/>[% range %] 
+    <input type="checkbox" name="prefix" value="[% range %]" checked/>[% range %]   
+    <input type="hidden" name="[% range %]IP" value="[% prefix.ip %]" />
     [% END %]
     covers [% prefix.ip %] 
  
@@ -31,6 +32,7 @@ Clicking "Back" will return you to the critical prefix list without making any c
     [% END %]
     [% FOREACH net IN prefix.nets %]
     &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="prefix" value="[% net %]" checked/>[% net %]<br> 
+    <input type="hidden" name="[% net %]IP" value="[% prefix.ip %]" />
     [% END %]  
 
     </p>

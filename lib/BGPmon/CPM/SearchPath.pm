@@ -5,20 +5,37 @@ use strict;
 use warnings;
 use base qw(BGPmon::CPM::DBObject);
 use BGPmon::CPM::Prefix;
+
+our $VERSION = '1.02';
  
 __PACKAGE__->meta->setup
 (
  table => 'search_paths',
- columns => [ qw(dbid path) ],
+ columns => [ qw(dbid path param_domain_dbid param_prefix_dbid) ],
  pk_columns => 'dbid',
- unique_key => 'path',
+ unique_key => ['path','param_domain_dbid','param_prefix_dbid'],
+ foreign_keys =>
+    [
+      param_prefix =>
+      {
+        relationship_type => 'many to one',
+        class       => 'BGPmon::CPM::Prefix',
+        key_columns => { param_prefix_dbid => 'dbid' },
+      },
+      param_domain =>
+      {
+        relationship_type => 'many to one',
+        class             => 'BGPmon::CPM::Domain',
+        key_columns       => {param_domain_dbid => 'dbid'},
+      }
+    ],
  relationships =>
     [
       prefixes =>{
           type       => 'many to many',
           map_class  => 'BGPmon::CPM::PrefixToSearchPath',
         },
-      ],
+    ],
 
 );
 __PACKAGE__->meta->error_mode('return');

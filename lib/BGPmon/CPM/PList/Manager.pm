@@ -2,6 +2,8 @@ package BGPmon::CPM::PList::Manager;
 
 use base qw(Rose::DB::Object::Manager);
 
+our $VERSION = '1.02';
+
 sub object_class { 'BGPmon::CPM::PList' }
 
 __PACKAGE__->make_manager_methods('plists');

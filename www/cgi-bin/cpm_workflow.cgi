@@ -160,10 +160,13 @@ sub InsertExpansionHandler{
   ## get the list object for the list we are currently workingon
   my $list = BGPmon::CPM::PList::Manager->getListByName($list_name);
 
-  my @search_paths;
-  push @search_paths,{path=>"Whois Expansion"};
   ## go through each one and determine if it can be added to the list
   foreach my $prefix (@prefixes){
+    my @search_paths;
+    my $key = $cgi->param($prefix.'IP');
+    push @search_paths,{path=>"Whois Expansion",param_prefix=>{prefix=>$key,
+                                                        watch_more_specifics=>1,
+                                                        watch_covering=>1}};
 
     $list->add_or_edit_prefixes({prefix=>$prefix,watch_more_specifics=>1,
                          watch_covering=>1,

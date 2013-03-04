@@ -4,16 +4,16 @@
 
 #########################
 
-# change 'tests => 1' to 'tests => last_test_to_print';
+use Test::More skip_all => "You must set up your database before running these tests";
 
-use Test::More skip_all => "";
-BEGIN { use_ok('BGPmon::CPM::Prefix') };
+BEGIN {use_ok('BGPmon::CPM::Prefix')};
 
 #########################
 
 # Insert your test code below, the Test::More module is use()ed here so read
 # its man page ( perldoc Test::More ) for help writing this test script.
 use BGPmon::CPM::Prefix;
+use BGPmon::CPM::PList::Manager;
 use BGPmon::CPM::PList;
 use BGPmon::CPM::Domain;
 
@@ -41,7 +41,22 @@ ok($list->save,"fourth Save Failed");
 
 
 my @prefixes = $list->prefixes;
-ok(scalar(@prefixes) == 2,"prefixes has wrong cardinality " . scalar(@prefixes));
+ok(scalar(@prefixes)==2,"prefixes has wrong cardinality " . scalar(@prefixes));
+
+## get the list object for the list we are currently workingon
+$list = BGPmon::CPM::PList::Manager->getListByName('test');
+
+$#prefixes = 0;
+push @prefixes,'1.2.3/24';
+## go through each one and determine if it can be added to the list
+foreach my $prefix (@prefixes){
+  my @search_paths;
+  push @search_paths,{path=>"Whois Expansion",param_prefix=>'1.2.3.4'};
+
+  $list->add_or_edit_prefixes({prefix=>$prefix,watch_more_specifics=>1,
+                       watch_covering=>1,
+                       search_paths=>\@search_paths});
+}
+$list->save;
 
 done_testing();
-#ok($list->delete( cascade => 1 ),"Failed list delete");

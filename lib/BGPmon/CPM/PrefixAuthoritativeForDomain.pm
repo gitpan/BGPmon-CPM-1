@@ -2,6 +2,8 @@ package BGPmon::CPM::PrefixAuthoritativeForDomain;
 
 use base qw(BGPmon::CPM::DBObject);
 
+our $VERSION = '1.02';
+
 __PACKAGE__->meta->setup
 (
   table   => 'authoritative_for',

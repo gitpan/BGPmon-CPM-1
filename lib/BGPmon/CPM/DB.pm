@@ -2,15 +2,17 @@ package BGPmon::CPM::DB;
 
 use Rose::DB;
 our @ISA = qw(Rose::DB);
+our $VERSION = '1.02';
  
 __PACKAGE__->use_private_registry;
  
 __PACKAGE__->register_db(
  driver => 'pg',
- database => 'bgpmon_cpm_db',
+ database => 'bgpmon_db',
  host => 'localhost',
- username => 'bgpmon_cpm_user',
- password => 'dbpass'
+ username => 'bgpmon_db_user',
+ schema => 'cpm',
+ password => 'passwd'
 ); 
 
 # Preloaded methods go here.

@@ -6,22 +6,24 @@ supporting modules.
 
 INSTALLATION
 
+Please Note: If other BGPmon DB tools have previously been installed it is
+likely that the bgpmon_db_user and bgpmon_db have already been created. If that is the case, skip to step 6.
+
 This package depends on being able to connect to a postgres installation.
 The following instructions will help prepare that installation, installation
 procedures may vary across platforms.
-1. Install Postgresql 
-2. Create the database user bgpmon_cpm_user (sudo -u postgres createuser)
-3. Create the database bgpmon_cpm_db (sudo -u postgres createdb bgpmon_cpm_db)
+1. Install Postgresql (sudo apt-get install postgresql)
+2. Create the database user bgpmon_db_user (sudo -u postgres createuser)
+3. Create the database bgpmon_db (sudo -u postgres createdb bgpmon_db)
 4. Give a user other than root or postgres access to the database 
      (should include web user): 
    Edit /etc/postgresql/8.1/main/pg_hba.conf to give specific users access
    Refer to postres documentation for assitance editing the pg_hba.conf file
 5. Restart postgres
-6. Create the CPM database
-   cd db_creation
-   psql -f 0_createTables.postgresql bgpmon_cpm_db bgpmon_cpm_user
+6. Create the CPM schema
+   bin/bpgpmon_cpm_db_reset 
 7. In order for the modules to access the scripts a password should be set
-   on the bgpmon_cpm_user role. (alter role bgpmon_cpm_user 'passwd';)
+   on the bgpmon_cpm_user role. (alter role bgpmon_cpm_user password 'passwd';)
    This password needs to be saved in lib/BGPmon/CPM/DB.pm 
    make test will fail if this is not completed
 

@@ -1,9 +1,10 @@
 #!/usr/bin/perl
 #########################
 use strict;
-use Test::More skip_all => "";
-BEGIN { use_ok('BGPmon::CPM::PList') };
-BEGIN { use_ok('BGPmon::CPM::PList::Manager') };
+#use Test::More skip_all => "";
+use Test::More skip_all => "Skipping.  Be sure your database is setup before running the tests mantually." ;
+BEGIN {use_ok('BGPmon::CPM::PList')};
+BEGIN {use_ok('BGPmon::CPM::PList::Manager')};
 
 #########################
 use BGPmon::CPM::PList;

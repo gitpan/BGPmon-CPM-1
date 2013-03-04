@@ -7,7 +7,7 @@ WriteMakefile(
     NAME              => 'BGPmon::CPM',
     VERSION           => VERSION,
     PREREQ_PM         => {Rose::DB::Object => 0.797, 
-                          BGPmon::CPM::Prefix::Filter => 1.00,
+                          BGPmon::CPM::Prefix::Finder => 1.00,
                           Net::DNS => 0.67, 
                           JSON => 2.53, 
                           Net::IP => 1.25, 
