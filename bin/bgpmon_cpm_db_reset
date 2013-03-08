@@ -55,7 +55,7 @@ Copyright (c) 2012 Colorado State University
 =cut
 
 BEGIN{
-        our $VERSION = '1.02';
+        our $VERSION = '1.03';
 };
 
 use strict;

@@ -2,7 +2,7 @@ package BGPmon::CPM::DB;
 
 use Rose::DB;
 our @ISA = qw(Rose::DB);
-our $VERSION = '1.02';
+our $VERSION = '1.03';
  
 __PACKAGE__->use_private_registry;
  

@@ -2,7 +2,7 @@ package BGPmon::CPM::DomainResolvesToPrefix;
 
 use base qw(BGPmon::CPM::DBObject);
 
-our $VERISON = '1.02';
+our $VERISON = '1.03';
 
 __PACKAGE__->meta->setup
 (

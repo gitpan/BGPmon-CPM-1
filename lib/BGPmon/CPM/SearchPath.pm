@@ -6,7 +6,7 @@ use warnings;
 use base qw(BGPmon::CPM::DBObject);
 use BGPmon::CPM::Prefix;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
  
 __PACKAGE__->meta->setup
 (

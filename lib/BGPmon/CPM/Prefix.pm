@@ -8,7 +8,7 @@ use BGPmon::CPM::PrefixAuthoritativeForDomain;
 use BGPmon::CPM::DomainResolvesToPrefix;
 use BGPmon::CPM::PrefixToSearchPath;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
  
 __PACKAGE__->meta->setup

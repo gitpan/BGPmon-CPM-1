@@ -16,14 +16,6 @@ create table cpm.domains (
   domain char(255) UNIQUE NOT NULL
 );
 
-create table cpm.search_paths (
-  dbid SERIAL PRIMARY KEY,
-  path char(255) NOT NULL,
-  param_domain_dbid int references cpm.domains(dbid),
-  param_prefix_dbid int references cpm.prefixes(dbid),
-  UNIQUE(path,param_domain_dbid,param_prefix_dbid)
-);
-
 create table cpm.prefixes (
   dbid SERIAL PRIMARY KEY,
   prefix cidr NOT NULL,
@@ -31,6 +23,14 @@ create table cpm.prefixes (
   watch_covering boolean NOT NULL,
   list_dbid int references cpm.lists(dbid),
   UNIQUE(prefix,list_dbid)
+);
+
+create table cpm.search_paths (
+  dbid SERIAL PRIMARY KEY,
+  path char(255) NOT NULL,
+  param_domain_dbid int references cpm.domains(dbid),
+  param_prefix_dbid int references cpm.prefixes(dbid),
+  UNIQUE(path,param_domain_dbid,param_prefix_dbid)
 );
 
 create table cpm.authoritative_for (
